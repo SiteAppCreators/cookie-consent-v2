@@ -41,11 +41,20 @@ In your container create a new tag:
 
 1. Go to tags
 2. Click the **New** Button
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/create-tags.png?raw=true">
+
 3. Give the tag a name, this will be your default tag (ex. "Consent Mode - Default")
 4. Press the "Tag Configuration"
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/new_tag.png?raw=true">
+
 5. Now you can choose a tag type --> press the **Discover more tag types in the Community Template Gallery**
 6. Search for **Consent Mode (Google + Microsoft tags)** and add to workspace
 7. Make sure you set all the consent settings on denied, except the **security_storage** (Is always granted)
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/constent_type.png?raw=true">
+
 8. Only select the **Pass Ad Click Information Through URLs (url_passthrough)** and **Redact Ads Data (ads_data_redaction)**    
 9. Add a trigger --> Choose **Consent Initialization - All Pages**
 10. Now press save 
@@ -59,10 +68,16 @@ Now we are going to make our variables that are equal to our cookies we give:
 #### Make the Cookie Consent variable
 1. Go to the variables section
 2. Click the **New** Button
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/variables_section.png?raw=true">
+
 3. Give the variable a name, this one keeps track of the Cookie Consent (ex. Cookie Consent)
 4. Choose the variable type **1st Party Cookie**
 5. Add the name of the cookie, make sure the cookie is called "**cookie-consent**". This is the name of the cookie I used in this package
 6. **Check** the URI-decode cookie
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/cookie_variable.png?raw=true">
+
 7. Save the cookie
 
 #### Make a variable for every option in the cookie consent
@@ -81,6 +96,9 @@ This is the name of the option as seen in the value of the cookies in the browse
 
 7. Set Default value on denied
 8. Only check the **Ignore Case** checkbox
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/ad_storage.png?raw=true">
+
 9. Now save it
 
 **Now repeat these 9 steps for every option**:
@@ -100,6 +118,9 @@ This is the name of the option as seen in the value of the cookies in the browse
 5. Now choose the **Update** command
 6. Now add the right variables to the consent settings. (**All the ones with "ad" are the same** and **security_storage is alwayes granted**)
 7. Only select the **Pass Ad Click Information Through URLs (url_passthrough)** and **Redact Ads Data (ads_data_redaction)**
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/update_consent.png?raw=true">
+
 8. Add a trigger --> Choose **Consent Initialization - All Pages**
 9. Now press save     
 
@@ -109,7 +130,7 @@ This is the name of the option as seen in the value of the cookies in the browse
 
 First check in your GTM for your container ID (you can find it in the right up corner)
 
-IMAGE
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/container_id.png?raw=true">
 
 If you select this, you get two scripts. Paste it in your `index.html`. Make sure you add your **container ID** (see comments in the code):
 
@@ -187,7 +208,6 @@ export default defineComponent({
         const reactRootInstance = ref(null);
 
         onMounted(() => {
-            // If there is a React root element, render the React component
             if (reactRoot.value) {
                 reactRootInstance.value = ReactDOM.createRoot(reactRoot.value);
                 reactRootInstance.value.render(
@@ -198,7 +218,7 @@ export default defineComponent({
 
         onBeforeUnmount(() => {
             if (reactRootInstance.value) {
-                reactRootInstance.value.unmount(); // Unmount React component when Vue component is destroyed
+                reactRootInstance.value.unmount();
             }
         });
 
@@ -226,17 +246,28 @@ export default defineComponent({
 ## Test the banner
 
 1. Go back to GTM and press preview
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/container_id.png?raw=true">
+
 2. Enter the URL you use to test (ex. http://localhost:3000/)
 3. Press Connect
 4. Now you can test the banner and change cookies
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/consent_testing.png?raw=true">
 
 ## Finalize
 
 If everything works, you are ready to submit this. But we need to do some steps first:
 
 1. Go to the Admin tab in GTM
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/admin_tab.png?raw=true">
+
 2. Press **Container Settings**
 3. Enable consent overview
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/enable_consent_overview.png?raw=true">
+
 4. Press the save button
 5. Go back to the **Tags** section on the left side
 6. Now you can press next to the "New" Button on a Shield --> This is the **Consent Overiew**
