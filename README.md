@@ -15,8 +15,9 @@ This project provides a fully compliant cookie consent banner developed in **Rea
 - [Usage](#usage)
   - [React.js](#how-to-use-in-reactjs)
   - [Vue.js Integration](#instructions-for-vuejs-integration)
+- [Test the banner](#test-the-banner)
+- [Finalize](#finalize)
 - [Additional Notes](#additional-notes)
-- [Contributing](#contributing)
 
 ## Features
 
