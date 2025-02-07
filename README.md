@@ -2,6 +2,8 @@
 
 This project provides a fully compliant cookie consent banner developed in **React.js**. The banner adheres to **Google Consent Mode v2** guidelines, enabling dynamic cookie consent management while maintaining compliance with GDPR and ePrivacy regulations.
 
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/cookie-banner.png?raw=true">
+
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
@@ -90,7 +92,7 @@ In this example we use the "Ad Storage" option:
 3. Give the variable a name so you know which option this is (ex. Lookup - Ad Storage)
 4. Choose the variable type **RegEx Table**
 5. For the "Input Variable", choose the Cookie Consent variable (In my case **{{Cookie Consent}}** )
-6. Now add a row in the RegEx Table and set in the Pattern field **"ads"\:true** and in the Output **granted**.
+6. Now add a row in the RegEx Table and set in the Pattern field **"ads"\\:true** and in the Output **granted**.
 This is the name of the option as seen in the value of the cookies in the browser.
  
 **_!!! Make sure the pattern field is correctly filled in or this won't work. Under these steps you can see a table with all variables you need to use and their patterns !!!_**
@@ -129,13 +131,13 @@ This is the name of the option as seen in the value of the cookies in the browse
 
 ## GTM Configuration
 
-First check in your GTM for your container ID (you can find it in the right up corner)
+First check in your GTM for your **container ID** (you can find it in the right up corner)
 
 <img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/container_id.png?raw=true">
 
-If you select this, you get two scripts. Paste it in your `index.html`. Make sure you add your **container ID** (see comments in the code):
+If you select this, you get two scripts. Paste it in your `index.html`. Make sure you add your **container ID** (Change the GTM-XXXXXXXX):
 
-In your `<head>` tag:
+In your `<head>` tag as high as possible (Change the GTM-XXXXXXXX):
 ```
 <head>
     <script>
@@ -152,15 +154,15 @@ In your `<head>` tag:
             j.src =
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXXX'); // ADD HERE YOUR OWN CONTAINER ID
+        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXXX');
     </script>
 </head>
 ```
-In your `<body>` tag:
+In your `<body>` tag (Change the GTM-XXXXXXXX):
 ```
 <body>
     <noscript><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXXX" // ADD HERE YOUR OWN CONTAINER ID
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXXX"
         height="0" width="0"
         style="display:none;visibility:hidden"></iframe></noscript>
 </body>
@@ -169,14 +171,14 @@ In your `<body>` tag:
 ## Usage
 
 ### How to Use in React.js
-Import and render the `CookieConsentBanner` component in your project:
+Import and render the `CookieConsentBanner` component in your project (Change the GTM-XXXXXXXX):
    ```javascript
    import CookieConsentBanner from 'cookie-consent-v2';
 
    function App() {
      return (
        <div>
-         <CookieConsentBanner />
+         <CookieConsentBanner gtmId={GTM-XXXXXXXX} />
        </div>
      );
    }
@@ -189,7 +191,7 @@ Import and render the `CookieConsentBanner` component in your project:
 To use this banner in a **Vue.js** application, follow these steps:
 
 1. **Create a Wrapper Component**
-   Create a new Vue component that will host the React-based cookie consent banner:
+   Create a new Vue component, called `CookieConsentBanner.vue`, that will host the React-based cookie consent banner (Change the GTM-XXXXXXXX):
 
 ```javascript
 <template>
@@ -234,7 +236,7 @@ export default defineComponent({
 2. **Use the Component in Vue:**
    ```html
    <script setup>
-    import CookieConsent from './components/CookieConsentBanner.vue';
+    import CookieConsent from './components/CookieConsentBanner.vue'; //Change the location if needed
    </script>
 
    <template>
@@ -244,14 +246,16 @@ export default defineComponent({
    </template>
    ```
 
+3. Run it locally
+
 ## Test the banner
 
-1. Go back to GTM and press preview
+1. Go back to GTM and press **Preview**
 
 <img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/container_id.png?raw=true">
 
 2. Enter the URL you use to test (ex. http://localhost:3000/)
-3. Press Connect
+3. Press **Connect**
 4. Now you can test the banner and change cookies
 
 <img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/consent_testing.png?raw=true">
