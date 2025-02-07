@@ -1,6 +1,6 @@
 {
     "name": "cookie-consent-v2",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "A cookie consent banner for your website",
     "main": "dist/cookie-consent-banner.js",
     "scripts": {

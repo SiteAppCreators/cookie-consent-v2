@@ -178,7 +178,7 @@ Import and render the `CookieConsentBanner` component in your project (Change th
    function App() {
      return (
        <div>
-         <CookieConsentBanner gtmId={GTM-XXXXXXXX} />
+         <CookieConsentBanner gtmId={'GTM-XXXXXXXX'} />
        </div>
      );
    }
