@@ -17,9 +17,12 @@ This project provides a fully compliant cookie consent banner developed in **Rea
 - [Usage](#usage)
   - [React.js](#how-to-use-in-reactjs)
   - [Vue.js Integration](#instructions-for-vuejs-integration)
+  - [Plain HTML](#instructions-for-plain-html-integration)
 - [Test the banner](#test-the-banner)
 - [Finalize](#finalize)
 - [Additional Notes](#additional-notes)
+- [Support My Work](#️-support-my-work)
+- [Follow me on Instagram](#-follow-me-on-instagram)
 
 ## Features
 
@@ -246,7 +249,69 @@ export default defineComponent({
    </template>
    ```
 
-3. Run it locally
+### Instructions for Plain HTML Integration
+
+Add this to your index.html file **(Change the GTM-XXXXXXXX on all 3 places):**
+
+   ```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React in Plain HTML</title>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-XXXXXXXX');</script>
+            <!-- End Google Tag Manager -->
+
+        <!-- Load React and Emotion in the head (they are libraries, don't interact with the DOM directly) -->
+        <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@emotion/react@11.10.5/dist/emotion-react.umd.min.js"></script>
+
+        <script>
+            window.react = React;
+            window['@emotion/react'] = window.emotionReact;
+        </script>
+    </head>
+    <body>
+                <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXXX"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
+        <!-- Div element where the React component will be mounted -->
+        <div id="react-root"></div>
+
+        <!-- Load application scripts at the end of body -->
+        <script src="https://unpkg.com/cookie-consent-v2/dist/cookie-consent-banner.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const container = document.getElementById('react-root');
+                const CookieConsentBanner = window.CookieConsentBanner?.default || window.CookieConsentBanner;
+            
+                if (!CookieConsentBanner) {
+                    console.error("CookieConsentBanner component is not available.");
+                    return;
+                }
+            
+                if (container) {
+                    const root = ReactDOM.createRoot(container);
+                    root.render(React.createElement(CookieConsentBanner, { gtmId: "GTM-XXXXXXXX" }));
+                } else {
+                    console.error("React root container not found.");
+                }
+            });
+        </script>
+
+    </body>
+</html>
+```
 
 ## Test the banner
 
@@ -259,6 +324,18 @@ export default defineComponent({
 4. Now you can test the banner and change cookies
 
 <img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/consent_testing.png?raw=true">
+
+## Optional: Add Google Analytics
+
+As before add a new tag (Give a name for example: “GA4”), but this time choose **Google Analytics** and select the **Google Tag**.
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/google_analytics.png?raw=true">
+
+Set it up like this. The Tag ID you see here is the one from the **Google Analytics**:
+
+<img src="https://github.com/SiteAppCreators/cookie-consent-v2/blob/master/public/ga_tag.png?raw=true">
+
+The banner and GA4 work together so everything is loaded correctly.
 
 ## Finalize
 
@@ -285,3 +362,15 @@ If everything works, you are ready to submit this. But we need to do some steps 
 
 - Ensure that Google Tag Manager (GTM) or Analytics configurations are set up properly to respect the consent state managed by this banner.
 - Ensure you added the container ID at all given places
+
+## ❤️ Support My Work
+If you find this package useful, please consider supporting me:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20Me%20a%20Coffee-FFDD00?logo=buy-me-a-coffee&logoColor=black&style=for-the-badge)](https://www.buymeacoffee.com/siteappcreators)
+
+---
+
+## 📲 Follow Me on Instagram
+Stay updated with my latest projects and news:
+
+[![Instagram](https://img.shields.io/badge/-@siteappcreators-E4405F?logo=instagram&logoColor=white&style=for-the-badge)](https://www.instagram.com/siteappcreators/)
